@@ -13,6 +13,36 @@ class ApplicationController < ActionController::Base
     render "shared/404", :layout => 'home'
   end
   
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:error] = "We're sorry, something you just requested was misplaced."
+    render "shared/404", :layout => 'home'
+  end
+
+  rescue_from ActiveRecord::RecordInvalid do |invalid|
+    flash[:error] = "We're sorry, there was a problem saving this record. Error:" + invalid.record.errors
+    render "shared/404", :layout => 'home'
+  end
+
+  rescue_from ActionController::RoutingError do
+    flash[:error] = "We're sorry, we could not locate the page you were searching for."
+    render "shared/404", :layout => 'home'
+  end
+
+  rescue_from ActionController::UnknownController do
+    flash[:error] = "We're sorry, we could not locate the page you were searching for."
+    render "shared/404", :layout => 'home'
+  end
+
+  rescue_from ActionController::UnknownAction do
+    flash[:error] = "We're sorry, we could not locate the page you were searching for."
+    render "shared/404", :layout => 'home'
+  end
+
+  rescue_from ActionController::MethodNotAllowed do
+    flash[:error] = "We're sorry, we could not locate the page you were searching for."
+    render "shared/404", :layout => 'home'
+  end
+
   # rescue_from ActiveRecord::RecordNotFound do
   #     flash[:error] = "We're sorry, something you just requested was misplaced."
   #     redirect_to @instance
@@ -71,5 +101,5 @@ class ApplicationController < ActionController::Base
       flash[:notice] = t('notice.user.pending_users', :url => users_path(:states_filter => 'pending'))
     end
   end
-  
+
 end
