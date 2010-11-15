@@ -10,7 +10,7 @@
 	</p>
 	<p id="file_attach">
 		<%= f.label :attach_files, "Attach Files"%>
-    <%= file_field_tag 'attachments[]', :id => 'multi' %>
+    <%= file_field_tag 'attachments[]', :id => 'multi', :accept => 'csv|jpg|zip|tar|docx|doc|xls|txt|pdf|mht' %>
   </p>
 
   <% unless @update.file_urls.empty? %>
