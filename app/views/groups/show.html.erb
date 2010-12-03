@@ -2,8 +2,8 @@
 
 <% content_for :breadcrumbs,
 	breadcrumbs(['Groups',group_types_url],
-				[@group.group_type.name.pluralize,group_type_url(@group.group_type)]) %>
-<% content_for :subheader_title, @group.name %>
+				[@group.group_type.name.pluralize,h(group_type_url(@group.group_type))]) %>
+<% content_for :subheader_title, h(@group.name) %>
 <% content_for :buttons do %>
     <% if can? :update => @group %>
 		<%= pretty_button(:edit_group, edit_group_type_group_path(@group.group_type, @group), 'Edit Group') %>

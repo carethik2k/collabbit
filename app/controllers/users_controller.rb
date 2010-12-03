@@ -1,3 +1,6 @@
+require "erb"
+include ERB::Util
+
 class UsersController < AuthorizedController
 
   skip_before_filter :require_login, :only => [:new, :create, :forgot_password,
@@ -293,7 +296,8 @@ class UsersController < AuthorizedController
   private
     def create_user(params)
       user = @instance.users.build(params)
-      
+      user.first_name = html_escape(user.first_name) # Line changed
+	user.last_name = html_escape(user.last_name) # Line changed
       user.state = if params[:state] && logged_in? && @current_user.can?(:update => User)
         params[:state]
       else

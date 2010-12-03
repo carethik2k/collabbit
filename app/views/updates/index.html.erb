@@ -195,8 +195,8 @@
 				    <% end %>
 					<% u.comments.last(5).each do |c| %>
 					<div class="comment">
-						<span class="comment-author"><%=link_to c.user.full_name, c.user %></span>
-						<span class="comment-body"><%=simple_link_format c.body%></span>
+						<span class="comment-author"><%=link_to h(c.user.full_name), c.user %></span>
+						<span class="comment-body"><%=simple_link_format h(c.body)%></span>
 						<% if (c.user.id == @current_user.id) || (can? :destroy => c) %>
 						    <span class="comment-destroy"><%=link_to '[x]', [@incident, u, c], :method => :delete, :confirm => 'Really delete?' %></span>
 						<% end %>

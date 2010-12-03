@@ -1,3 +1,6 @@
+require "erb"
+include ERB::Util
+
 class UpdatesController < AuthorizedController
   def new
     return with_rejection unless @current_user.can? :create => Update
@@ -97,6 +100,7 @@ class UpdatesController < AuthorizedController
 
     @incident = @instance.incidents.find(params[:incident_id])
     @update = @incident.updates.build(params[:update])
+    @update.title = html_escape(@update.title) # Line changed
     @update.user = @current_user
     @update.title.strip!
 
