@@ -22,7 +22,7 @@
 	<ul id="groups-list">
 	<% @group_type.groups.each do |g| %>
 		<li>
-			<%= link_to g.name, group_type_group_url(g.group_type, g) %>
+			<%= link_to h(g.name), group_type_group_url(g.group_type, g) %>
 			&ndash; <%= g.users.size %> members.
 			<% unless g.chairs.empty? %>
 				Chairs: 

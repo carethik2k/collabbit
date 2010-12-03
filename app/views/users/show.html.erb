@@ -11,16 +11,16 @@
 <% content_for :body do %>
 	<dl id="contact">
 		<dt>Email:</dt>
-			<dd><%= mail_to @user.email, @user.email, :target => '_blank' %></dd>
+			<dd><%= mail_to h(@user.email), @user.email, :target => '_blank' %></dd>
 		
 		<% if @user.cell_phone %>
 			<dt>Cell Phone:</dt>
-				<dd><%= phone @user.cell_phone %> <%= preferred_cell(@user) %></dd>
+				<dd><%= phone h(@user.cell_phone) %> <%= h(preferred_cell(@user)) %></dd>
 		<% end %>
 
 		<% if @user.desk_phone %>
 			<dt>Desk Phone:</dt>
-				<dd><%= phone @user.desk_phone %> <%= preferred_desk(@user) %></dd>
+				<dd><%= phone h(@user.desk_phone) %> <%= h(preferred_desk(@user)) %></dd>
 		<% end %>
 
 		<dt>Groups:</dt>

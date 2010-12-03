@@ -15,15 +15,15 @@
         <ul id="incidents-list">
         <% @incidents.each do |i| %>
             <% unless i.closed_at? %>
-            <li><%= link_to i.name, i, :class => :title %> 
-                <%=h i.description %>
+            <li><%= link_to h(i.name), i, :class => :title %> 
+                <%=h h(i.description) %>
                 <span class="date">(<%=mdy i.created_at%>)</span>
             </li>
             <% else %>
             <li>
                 <span class="changed">closed</span>
-                <%= link_to i.name, i, :class => "title closed" %>
-                <%=h i.description %>
+                <%= link_to i.name, h(i), :class => "title closed" %>
+                <%=h h(i.description) %>
                 <span class="date">(<%=mdy i.created_at%> to <%=mdy i.closed_at%>)</span>
             </li>
             <% end %>

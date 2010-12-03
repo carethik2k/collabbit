@@ -97,7 +97,7 @@
 				<% if u.email %>
 					<span class="email">
 						<span class="contact-label">email:</span>
-						<%=mail_to u.email, u.email, :target => '_blank' %>
+						<%=mail_to h(u.email), u.email, :target => '_blank' %>
 					</span>
 				<% end %>
 				<% if u.groups and u.groups.length > 0 %>
@@ -106,12 +106,12 @@
 						<ul class="groups">
 						<% if u.groups.length > 4 %>
 							<% u.groups[0,4].each do |g| %>
-							<li><%= link_to g.name, group_type_group_path(g.group_type, g) %></li>
+							<li><%= link_to h(g.name), group_type_group_path(g.group_type, g) %></li>
 							<% end %>
 							<li class="more"><%= link_to "["+(u.groups.length-4).to_s+"&nbsp;more]", u%></li>
 						<% else %>
 							<% u.groups.each do |g| %>
-							<li><%= link_to g.name, group_type_group_path(g.group_type, g) %></li>
+							<li><%= link_to h(g.name), group_type_group_path(g.group_type, g) %></li>
 							<% end %>
 						<% end %>
 						</ul>

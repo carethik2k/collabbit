@@ -2,7 +2,7 @@
 
 <% content_for :breadcrumbs, 
 	breadcrumbs(['Incidents',incidents_path],
-				[@incident.name,incident_path(@incident)]) %>
+				[@incident.name,h(incident_path(@incident))]) %>
 <% content_for :subheader_title, 'Edit Incident' %>
 
 <% content_for :body do %>
