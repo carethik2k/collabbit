@@ -87,7 +87,7 @@ class UsersController < AuthorizedController
     return with_rejection unless !logged_in? || @current_user.can?(:create => User)
     params[:user][:email].strip!
     @user = create_user(params[:user])
-    @user.state = 'approved' if logged_in? || @user.whitelisted?
+    @user.state = 'approved' if logged_in? || (@user.email? && @user.whitelisted?)
 
     if @user.save
       if logged_in?
